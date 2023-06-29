@@ -1,7 +1,72 @@
 <%- include('template/head', { titulo: 'index'}) %>
 <body>
-    <h1>hola</h1>
-    <h2><%= titulo %></h2>
-
+    <%- include('template/header') %>
+    <main>
+        <section class="hero" id="hero">
+            <div class="banner">
+                <picture>
+                    <img src="./images/png/funkos-banner1.png" alt="banner">                    
+                </picture>
+                <div class="banner-principal">
+                    <h1>Nuevos Ingresos</h1>
+                    <p>Descubri el próximo Funko Pop de tu colección</p>                    
+                    <button class="btn-shop">SHOP</button>
+                </div>
+            </div>            
+        </section>
+        <section class="coleccion" id="coleccion">
+            <div class="column-coleccion">    
+                <div class="row-coleccion">
+                    <div class="descrip-coleccion">
+                        <h2>STAR WARS &<br>THE MANDALORIAN</h2>
+                        <p>Disfruta de una saga que sigue<br>agregando personajes a su colección.</p>
+                        <hr>
+                        <div class="descrip-btn">
+                            <button class="btn-coleccion">VER COLECCIÓN</button>
+                        </div>
+                    </div>
+                    <div class="img-coleccion">
+                        <img src="./images/svg/baby-yoda-11.svg" alt="baby Yoda">
+                    </div>
+                </div>
+                <div class="row-coleccion">
+                    <div class="img-coleccion">
+                        <img src="./images/svg/vulpix.svg" alt="Pokemon Vulpix">
+                    </div>
+                    <div class="descrip-coleccion vulpix">
+                        <h2>POKEMON INDIGO</h2>
+                        <p>Atrapa todos los que puedas y disfruta<br>de una colección llena de amigos.</p>
+                        <hr>
+                        <div class="descrip-btn">
+                            <button class="btn-coleccion">VER COLECCIÓN</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row-coleccion">
+                    <div class="descrip-coleccion">
+                        <h2>HARRY POTTER</h2>
+                        <p>Revive los recuerdos de una saga llena<br>de magia y encanto.</p>
+                        <hr>
+                        <div class="descrip-btn">
+                            <button class="btn-coleccion">VER COLECCIÓN</button>
+                        </div>
+                    </div>
+                    <div class="img-coleccion">
+                        <img src="./images/svg/snape-patronus-11.svg" alt="Snape Patronus">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="lanzamientos" id="lanzamientos">
+            <div class="column-lanzamientos">
+                <div class="titulo-lanzamientos">
+                    <h2>ÚLTIMOS LANZAMIENTOS</h2>
+                </div>
+                <div class="row-lanzamientos" id="row-lanzamientos">
+                    
+                </div>
+            </div>
+        </section>
+    </main>
 </body>
 <%- include('template/footer') %>
