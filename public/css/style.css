@@ -1,0 +1,12 @@
+body{
+    background-color: rgb(76, 70, 70);
+    color: aliceblue;
+}
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+}
