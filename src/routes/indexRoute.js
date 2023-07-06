@@ -5,10 +5,10 @@ import productsRouter from './productsRoute.js';
 export const router = Router();
 
 router.get('/', (req, res) => {
-    res.render('index', {titulo: 'hola mundo'});
+    res.render('index', {title: 'Home | FunkoShop'});
 });
 router.get('/productos', (req, res) => {
-    res.render('productos', {titulo: 'Productos'});
+    res.render('productos', {title: 'Home | FunkoShop'});
 });
 
 router.use('/api/productos', productsRouter);
