@@ -1,7 +1,7 @@
 import { pool } from '../config/dbConfig.js';
 
 const getAllProducts = async () => {
-    let sql = 'SELECT * FROM funkoshop;';
+    let sql = 'SELECT * FROM product;';
     try {
       const [rows] = await pool.query(sql);
         return rows;
@@ -11,7 +11,7 @@ const getAllProducts = async () => {
 };
   
 const getProductsWithFilter = async (filtros) => {
-    let sql = 'SELECT * FROM funkoshop';
+    let sql = 'SELECT * FROM product';
     
     let whereClause = '';
     let values = [];
@@ -53,18 +53,18 @@ const getProductsWithFilter = async (filtros) => {
 
 }
 
-const getProductById = async (id) => {
-    let sql = 'SELECT * FROM funkoshop WHERE id = ?;';
+/* const getProductById = async (id) => {
+    let sql = 'SELECT * FROM product WHERE product_id = ?;';
     try {
         const [rows] = await pool.query(sql, [id]);
         return rows[0];
     } catch (error) {
         throw new Error('Error al obtener el producto desde la base de datos.');
     }
-};
+}; */
 
 const getProduct = async (param) => {
-    let sql = 'SELECT * FROM funkoshop WHERE ?';
+    let sql = 'SELECT * FROM product WHERE ?';
 
     try {
         const [result] = await pool.query(sql, {param});              
@@ -75,7 +75,7 @@ const getProduct = async (param) => {
 };
 
 const updateProduct = async (productId, updatedProduct) => {
-    let sql = 'UPDATE funkoshop SET serie = ?, nombre = ?, imagen = ?, precio = ?, cuotas = ?, stock = ? WHERE id = ?;';
+    let sql = 'UPDATE product SET serie = ?, nombre = ?, imagen = ?, precio = ?, cuotas = ?, stock = ? WHERE id = ?;';
     try {
         const { serie, nombre, imagen, precio, cuotas, stock } = updatedProduct;
         const [result] = await pool.query(sql, [
@@ -94,7 +94,7 @@ const updateProduct = async (productId, updatedProduct) => {
 };
 
 const createProduct = async (nuevoProducto) => {
-    let sql = 'INSERT INTO funkoshop(serie, nombre, imagen, precio, cuotas, stock) VALUES (?, ?, ?, ?, ?, ?)'
+    let sql = 'INSERT INTO product(serie, nombre, imagen, precio, cuotas, stock) VALUES (?, ?, ?, ?, ?, ?)'
     try {
         const { serie, nombre, imagen, precio, cuotas, stock } = nuevoProducto;
         const [result] = await pool.query(sql, [
@@ -112,7 +112,7 @@ const createProduct = async (nuevoProducto) => {
 };
 
 const deleteProduct = async (productId) => {
-    let sql = 'DELETE FROM funkoshop WHERE id = ?;';
+    let sql = 'DELETE FROM product WHERE id = ?;';
     try {
         const [result] = await pool.query(sql, [productId]);
         return result;
@@ -124,7 +124,7 @@ const deleteProduct = async (productId) => {
 export default {
     getAllProducts,
     getProductsWithFilter,
-    getProductById,
+    /* getProductById, */
     getProduct,
     createProduct,
     updateProduct,

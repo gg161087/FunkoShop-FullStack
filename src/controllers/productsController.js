@@ -32,7 +32,7 @@ const getProductsWithFilter = async (req, res) => {
 const getProductById = async (req, res) => {
     const productId = req.params.id;
     try {
-        const product = await productsService.getProductById(productId);
+        const product = await productsService.getProduct(productId);
     if (!product) {
         return res.status(404).json({ error: 'Producto no encontrado.' });
     }
@@ -45,7 +45,7 @@ const getProductById = async (req, res) => {
 const getProduct = async (req, res) => {
     const params = req.params;
     try {
-        const product = await productsService.getProductById(params);
+        const product = await productsService.getProduct(params);
     if (!product) {
         return res.status(404).json({ error: 'Producto no encontrado.' });
     }

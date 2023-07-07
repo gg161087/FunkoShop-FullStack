@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
     res.render('index', {title: 'Home | FunkoShop'});
 });
 router.get('/productos', (req, res) => {
-    res.render('productos', {title: 'Home | FunkoShop'});
+    res.render('products', {title: 'Home | FunkoShop'});
 });
 
 router.use('/api/productos', productsRouter);
