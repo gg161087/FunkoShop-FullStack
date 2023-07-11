@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <title><%= view.title %></title>
+</head>
+<body>
+<header class="page-header">
+    <nav class="navbar container">
+        <picture class="navbar__logo">
+            <a href="/home">
+                <img src="./img/branding/logo_light_horizontal.svg" alt="FunkoShop Logotipo">
+            </a>
+        </picture>
+        <ul class="navbar__menu">
+            <li class="navbar__item with-submenu">
+                <a class="navbar__link with-icon" href="/shop">SHOP<iconify-icon icon="ion:chevron-down"></iconify-icon></a>
+                <ul class="submenu">
+                    <li class="submenu__item">
+                        <a class="submenu__link" href="">Funkos</a>
+                    </li>
+                    <li class="submenu__item">
+                        <a class="submenu__link" href="">Remeras</a>
+                    </li>
+                    <li class="submenu__item">
+                        <a class="submenu__link" href="">LLaveros</a>
+                    </li>
+                </ul>
+            </li>
+            <li class="navbar__item">
+                <a class="navbar__link" href="/contact">CONTACTO</a>                    
+            </li>
+            <li class="navbar__item">
+                <a class="navbar__link" href="/login">LOGIN</a>                    
+            </li>
+            <li class="navbar__item">
+                <a class="navbar__cart" href="/cart"><img src="./img/icons/cart-icon.svg" alt="icono de carrito de compras"></a>                    
+            </li>
+        </ul>
+    </nav>
+</header>
