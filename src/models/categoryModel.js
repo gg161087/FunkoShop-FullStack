@@ -1,5 +1,5 @@
 import { getConnection } from '../config/dbConfig.js';
-const cont = getConnection();
+const conn = getConnection();
 
 const getAll = async () => {
     try {

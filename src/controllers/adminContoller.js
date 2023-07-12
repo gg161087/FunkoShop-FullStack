@@ -4,7 +4,7 @@ import licenceService from '../services/licenceService.js';
 
 const adminView = async (req, res) => {
     const { data } = await itemService.getAllItems();
-    res.render('/admin/admin', {
+    res.render('admin/admin', {
         view: {
             title: 'List of Products | Admin Funkoshop'
         },
@@ -12,7 +12,7 @@ const adminView = async (req, res) => {
     });
 };
 const createView = async (req, res) => {
-    res.render('./admin/create', {
+    res.render('admin/create', {
         view: {
             title: 'Create Product | Admin Funkoshop'
         }
@@ -21,7 +21,7 @@ const createView = async (req, res) => {
 const createItem = async (req, res) => {
     const item = req.body;
     await itemService.createItem(item);
-    res.redirect('/admin');
+    res.redirect('admin');
 };
 const bulkCreate = async (req, res) => {
     const items = req.body;
@@ -33,7 +33,7 @@ const editView = async (req, res) => {
     const { data: categories } = await categoryService.getAllItems();
     const { data: licences } = await licenceService.getAllItems();
     const { data } = await itemService.getItem(id);    
-    res.render('/admin/edit', {
+    res.render('admin/edit', {
         view: {
             title: `Edit Product #${id} | Admin Funkoshop`
         },
@@ -45,8 +45,7 @@ const editView = async (req, res) => {
 const editItem = async (req, res) => {
     const id = req.params.id;
     const item = req.body;
-
-    await itemService.edit(item, id);
+    await itemService.editItem(item, id);    
     res.redirect('/admin');
 };
 const deleteItem = async (req, res) => {

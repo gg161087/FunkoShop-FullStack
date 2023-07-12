@@ -9,14 +9,12 @@ const getAll = async () => {
             data: rows
         };
         return response;
-
     } catch (e) {
         const error = {
             isError: true,
             message: `No pudimos recuperar los datos ${e}.`
         };
-        return error;
-        
+        return error;      
     }
 };
 

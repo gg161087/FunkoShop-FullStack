@@ -39,7 +39,6 @@ const editItem = async (item, id) => {
         licence_id: item.collection,
         category_id: item.category
     }
-
     return await itemModel.edit(itemSchema, { product_id: id });
 }
 
