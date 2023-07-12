@@ -4,7 +4,7 @@ import licenceService from '../services/licenceService.js';
 
 const adminView = async (req, res) => {
     const { data } = await itemService.getAllItems();
-    res.render('./admin/admin', {
+    res.render('/admin/admin', {
         view: {
             title: 'List of Products | Admin Funkoshop'
         },
@@ -33,7 +33,7 @@ const editView = async (req, res) => {
     const { data: categories } = await categoryService.getAllItems();
     const { data: licences } = await licenceService.getAllItems();
     const { data } = await itemService.getItem(id);    
-    res.render('./admin/edit', {
+    res.render('/admin/edit', {
         view: {
             title: `Edit Product #${id} | Admin Funkoshop`
         },
@@ -61,7 +61,7 @@ const loginView = (req, res) => res.render('auth/login', {
     }
 });
 const loginUser = (req, res) => res.send('Login Route that receive the data when user click login button');
-const registerView = (req, res) => res.render('./auth/register', {
+const registerView = (req, res) => res.render('auth/register', {
     view: {
         title: 'Register | Funkoshop'
     }
