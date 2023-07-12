@@ -30,10 +30,9 @@ const bulkCreate = async (req, res) => {
 };
 const editView = async (req, res) => {
     const id = req.params.id;
-    const { data: categories } = await categoryService.getAllItemsCategories();
-    const { data: licences } = await licenceService.getAllItemsLicences();
-    const { data } = await itemService.getItem(id);
-    console.log(categories, licences);
+    const { data: categories } = await categoryService.getAllItems();
+    const { data: licences } = await licenceService.getAllItems();
+    const { data } = await itemService.getItem(id);    
     res.render('./admin/edit', {
         view: {
             title: `Edit Product #${id} | Admin Funkoshop`
@@ -56,7 +55,7 @@ const deleteItem = async (req, res) => {
     await itemService.deleteItem(id);
     res.redirect('/admin');
 };
-const loginView = (req, res) => res.render('./auth/login', {
+const loginView = (req, res) => res.render('auth/login', {
     view: {
         title: 'Login | Funkoshop'
     }

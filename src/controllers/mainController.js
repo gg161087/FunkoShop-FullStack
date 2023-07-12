@@ -1,7 +1,7 @@
 import licenceService from '../services/licenceService.js';
 
 const homeView = async (req, res) => {
-    const licences = await licenceService.getAllItemsLicences();
+    const licences = await licenceService.getAllItems();
     res.render('home', {
         view: {
             title: "Home | Funkoshop"
@@ -14,7 +14,7 @@ const aboutView = (req, res) => res.send('About View Route');
 const faqsView = (req, res) => res.send('FAQs View Route');
 
 export default {
-    homeView,
+    homeView,    
     contactView,
     aboutView,
     faqsView
