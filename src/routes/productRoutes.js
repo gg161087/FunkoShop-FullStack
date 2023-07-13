@@ -6,7 +6,7 @@ const router = Router();
 
 router.get('/', productController.shopView);
 router.get('/item/:id', productController.detailView);
-router.post('/item/:id/add', productController.addItemToCart);
+router.post('/item/:id/add', productController.addProductToCart);
 router.get('/cart', productController.cartView);
 router.post('/cart', productController.checkout);
 

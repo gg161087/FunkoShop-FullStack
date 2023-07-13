@@ -1,7 +1,7 @@
 import { getConnection } from '../config/dbConfig.js';
 const conn = getConnection();
 
-const getAll = async () => {
+const getLicences = async () => {
     try {
         const [rows] = await conn.query('SELECT * FROM licence;');
         const response = {
@@ -19,5 +19,5 @@ const getAll = async () => {
 };
 
 export default {
-    getAll,
+    getLicences,
 }

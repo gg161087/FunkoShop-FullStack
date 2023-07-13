@@ -1,9 +1,9 @@
 import categoryModel from '../models/categoryModel.js';
 
-const getAllItems = async () => {
-    return await categoryModel.getAll();
+const getCategories= async () => {
+    return await categoryModel.getCategories();
 };
 
 export default {
-    getAllItems,
+    getCategories,
 };
