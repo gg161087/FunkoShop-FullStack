@@ -1,14 +1,14 @@
-import itemService from '../services/itemService.js';
+import productService from '../services/productService.js';
 import categoryService from '../services/categoryService.js';
 import licenceService from '../services/licenceService.js';
 
 const adminView = async (req, res) => {
-    const { data } = await itemService.getAllItems();
+    const products = await productService.getAllItems();
     res.render('admin/admin', {
         view: {
             title: 'List of Products | Admin Funkoshop'
         },
-        items: data
+        products: products.data     
     });
 };
 const createView = async (req, res) => {
@@ -20,19 +20,19 @@ const createView = async (req, res) => {
 };
 const createItem = async (req, res) => {
     const item = req.body;
-    await itemService.createItem(item);
+    await productService.createItem(item);
     res.redirect('admin');
 };
 const bulkCreate = async (req, res) => {
     const items = req.body;
-    const result = await itemService.create(items.map(el => Object.values(el)));
+    const result = await productService.create(items.map(el => Object.values(el)));
     res.send(result);
 };
 const editView = async (req, res) => {
     const id = req.params.id;
     const { data: categories } = await categoryService.getAllItems();
     const { data: licences } = await licenceService.getAllItems();
-    const { data } = await itemService.getItem(id);    
+    const { data } = await productService.getItem(id);    
     res.render('admin/edit', {
         view: {
             title: `Edit Product #${id} | Admin Funkoshop`
@@ -45,13 +45,13 @@ const editView = async (req, res) => {
 const editItem = async (req, res) => {
     const id = req.params.id;
     const item = req.body;
-    await itemService.editItem(item, id);    
+    await productService.editItem(item, id);    
     res.redirect('/admin');
 };
 const deleteItem = async (req, res) => {
     const id = req.params.id;
 
-    await itemService.deleteItem(id);
+    await productService.deleteItem(id);
     res.redirect('/admin');
 };
 const loginView = (req, res) => res.render('auth/login', {

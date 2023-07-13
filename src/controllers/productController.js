@@ -1,7 +1,7 @@
-import itemService from '../services/itemService.js';
+import productService from '../services/productService.js';
 
 const shopView = async (req, res) => {
-    const items = await itemService.getAllItems();
+    const items = await productService.getProducts();
     const { data } = items;
     res.render('./shop/shop', {
         view: {
@@ -12,10 +12,11 @@ const shopView = async (req, res) => {
 }
 const detailView = async (req, res) => {
     const id = req.params.id;
-    const item = await itemService.getItem(id);
-    const { data } = item;
+    const item = await productService.getProduct(id);
+    const licence_id = item.data[0].licence_id;
+    const products = await productService.getProductsByLicence(licence_id);
 
-    if (!data[0]) {
+    if (!item.data[0]) {
         res.status(404).send('El producto con el ID seleccionado no existe o fue eliminado');
     }
 
@@ -23,7 +24,9 @@ const detailView = async (req, res) => {
         view: {
             title: "Item | Funkoshop"
         },
-        item: data[0]
+        item: item.data[0],
+        products: products.data,
+        sliderTitle: 'Productos Relacionados'
     });
 }
 const addItemToCart = (req, res) => res.send('Route to add a item to cart');

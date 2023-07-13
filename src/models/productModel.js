@@ -1,7 +1,7 @@
 import { getConnection } from '../config/dbConfig.js';
 const conn = getConnection();
 
-const getAll = async () => {
+const getProducts = async () => {
     try {
         const [rows] = await conn.query('SELECT product.*, category.category_name, licence.licence_name FROM (product LEFT JOIN category ON product.category_id = category.category_id) LEFT JOIN licence ON product.licence_id = licence.licence_id;');
         const response = {
@@ -18,7 +18,24 @@ const getAll = async () => {
     }
 };
 
-const getOne = async (params) => {
+const getProductsByLicence = async (licence_id) => {
+    try {
+        const [rows] = await conn.query('SELECT * FROM product WHERE licence_id = ?', licence_id);
+        const response = {
+            isError: false,
+            data: rows
+        };
+        return response;
+    } catch (e) {
+        const error = {
+            isError: true,
+            message: `No pudimos recuperar los datos ${e}.`
+        };
+        return error;
+    }
+}
+
+const getProduct = async (params) => {
     try {
         const [rows] = await conn.query('SELECT product.*, category.category_name, licence.licence_name FROM (product LEFT JOIN category ON product.category_id = category.category_id) LEFT JOIN licence ON product.licence_id = licence.licence_id WHERE ?;', params);
         const response = {
@@ -35,7 +52,7 @@ const getOne = async (params) => {
     }
 };
 
-const create = async (params) => {
+const createProduct = async (params) => {
     try {
         const [rows] = await conn.query('INSERT INTO product (name, description, price, stock, discount, sku, dues, image_front, image_back, licence, category_id) VALUES ?;', [params]);
 
@@ -53,7 +70,7 @@ const create = async (params) => {
     }
 };
 
-const edit = async (params, id) => {
+const editProduct = async (params, id) => {
     try {
         const [rows] = await conn.query('UPDATE product SET ? WHERE ?;', [params, id]);
         const response = {
@@ -72,7 +89,7 @@ const edit = async (params, id) => {
     }
 };
 
-const deleteOne = async (params) => {
+const deleteProduct = async (params) => {
     try {
         const [rows] = await conn.query('DELETE FROM product WHERE ?;', params);
         const response = {
@@ -91,9 +108,10 @@ const deleteOne = async (params) => {
 };
 
 export default {
-    getAll,
-    getOne,
-    create,
-    edit,
-    deleteOne
+    getProducts,
+    getProductsByLicence,
+    getProduct,
+    createProduct,
+    editProduct,
+    deleteProduct
 };

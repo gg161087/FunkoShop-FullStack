@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: bllxj36u2qg6powvyu2e-mysql.services.clever-cloud.com:3306
--- Generation Time: Jul 10, 2023 at 07:05 PM
+-- Generation Time: Jul 13, 2023 at 04:58 AM
 -- Server version: 8.0.15-5
 -- PHP Version: 7.2.34
 
@@ -52,18 +52,19 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_description`) 
 CREATE TABLE `licence` (
   `licence_id` int(11) NOT NULL,
   `licence_name` varchar(50) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `licence_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `licence_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `licence_image` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `licence`
 --
 
-INSERT INTO `licence` (`licence_id`, `licence_name`, `licence_description`) VALUES
-(1, 'Star Wars', ''),
-(2, 'Pokemon', ''),
-(3, 'Harry Potter', ''),
-(4, 'Naruto Shippuden', '');
+INSERT INTO `licence` (`licence_id`, `licence_name`, `licence_description`, `licence_image`) VALUES
+(1, 'Star Wars', 'Disfruta de una saga que sigue agregando personajes a su colección.', 'star-wars/baby-yoda-1.webp'),
+(2, 'Pokemon', 'Atrapa todos los que puedas y disfruta de una colección llena de amigos.', 'pokemon/vulpix-1.webp'),
+(3, 'Harry Potter', 'Revive los recuerdos de una saga llena de magia y encanto.', 'harry-potter/snape-patronus-1.webp'),
+(4, 'Naruto Shippuden', '', '');
 
 -- --------------------------------------------------------
 
@@ -74,7 +75,7 @@ INSERT INTO `licence` (`licence_id`, `licence_name`, `licence_description`) VALU
 CREATE TABLE `product` (
   `product_id` int(11) NOT NULL,
   `product_name` varchar(60) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_descsription` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `product_description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `price` decimal(10,2) NOT NULL,
   `stock` int(11) NOT NULL,
   `sku` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -84,16 +85,17 @@ CREATE TABLE `product` (
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `licence_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=COMPACT;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `product_descsription`, `price`, `stock`, `sku`, `dues`, `image_front`, `image_back`, `licence_id`, `category_id`) VALUES
-(1, 'Baby Yoda Blueball', 'Disfruta de una saga que sigue agregando personajes a su colección.', '1799.00', 10, 'STW001001', 10, '/img/star-wars/baby-yoda-1.webp', '/img/star-wars/baby-yoda-box.webp', 1, 1),
-(2, 'Vulpix Fancy', 'Atrapa todos los que puedas y disfruta de una colección llena de amigos.', '1799.00', 10, 'PKM001001', 10, '/img/pokemon/vulpix-1.webp', '/img/pokemon/vulpix-box.webp', 2, 1),
-(3, 'Snape Patronus', 'Revive los recuerdos de una saga llena de magia y encanto.', '1799.00', 10, 'HPT001001', 10, '/img/harry-potter/snape-patronus-1.webp', '/img/harry-potter/snape-patronus-box.webp', 3, 1);
+INSERT INTO `product` (`product_id`, `product_name`, `product_description`, `price`, `stock`, `sku`, `dues`, `image_front`, `image_back`, `licence_id`, `category_id`) VALUES
+(1, 'Baby Yoda Blueball', 'Disfruta de una saga que sigue agregando personajes a su colección.', '1799.00', 10, 'STW001001', 3, 'star-wars/baby-yoda-1.webp', 'star-wars/baby-yoda-box.webp', 1, 1),
+(2, 'Vulpix Fancy', 'Atrapa todos los que puedas y disfruta de una colección llena de amigos.', '1799.00', 10, 'PKM001001', 3, 'pokemon/vulpix-1.webp', 'pokemon/vulpix-box.webp', 2, 1),
+(3, 'Snape Patronus', 'Revive los recuerdos de una saga llena de magia y encanto.', '1799.00', 10, 'HPT001001', 3, 'harry-potter/snape-patronus-1.webp', 'harry-potter/snape-patronus-box.webp', 3, 1),
+(4, 'Bobba Fett', 'Disfruta de una saga que sigue agregando personajes de Star Wars', '1899.00', 20, 'STW001002', 3, 'star-wars/bobbafett-1.webp', 'star-wars/bobbafett-box.webp', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,7 @@ ALTER TABLE `licence`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `rol`

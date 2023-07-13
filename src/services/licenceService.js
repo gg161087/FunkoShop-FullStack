@@ -1,9 +1,9 @@
 import licenceModel from '../models/licenceModel.js';
 
-const getAllItems = async () => {
+const getLicences = async () => {
     return await licenceModel.getAll();
 }
 
 export default {
-    getAllItems,
+    getLicences,
 };
