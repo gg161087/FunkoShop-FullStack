@@ -16,7 +16,7 @@ const shopView = async (req, res) => {
 }
 const detailView = async (req, res) => {
     const id = req.params.id;
-    const product = await productService.getProduct(id);
+    const product = await productService.getProduct(id);    
     const licence_id = product.data[0].licence_id;
     const products = await productService.getProductsByLicence(licence_id);
 

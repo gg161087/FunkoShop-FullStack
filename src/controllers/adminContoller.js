@@ -10,11 +10,11 @@ const adminView = async (req, res) => {
             view: {
                 title: 'List of Products | Admin Funkoshop'
             },
-            products: products.data     
+            products: products.data
         });
     } else {
         errorGetting(res);
-    }    
+    }
 };
 const createView = async (req, res) => {
     res.render('admin/create', {
@@ -37,7 +37,7 @@ const editView = async (req, res) => {
     const id = req.params.id;
     const categories = await categoryService.getCategories();
     const licences = await licenceService.getLicences();
-    const product = await productService.getProduct(id);    
+    const product = await productService.getProduct(id);
     res.render('admin/edit', {
         view: {
             title: `Edit Product #${id} | Admin Funkoshop`
@@ -49,9 +49,47 @@ const editView = async (req, res) => {
 };
 const editProduct = async (req, res) => {
     const id = req.params.id;
-    const item = req.body;
-    await productService.editProduct(item, id);    
-    res.redirect('/admin');
+    const body = req.body;
+    const licences = await licenceService.getLicences();
+    const lincence_name = licences.data[req.body.collection - 1].licence_name;
+    let url_front = '';
+    let url_back = '';
+    let image_front = body.images
+    let image_back = image_front.replace(/-1\.webp$/, "-box.webp");
+
+    switch (lincence_name) {
+        case 'Harry Potter':
+            url_front = `harry-potter/${image_front}`;
+            url_back = `harry-potter/${image_back}`;
+            break;
+        case 'Star Wars':
+            url_front = `star-wars/${image_front}`;
+            url_back = `star-wars/${image_back}`;
+            break;
+        case 'Pokemon':
+            url_front = `pokemon/${image_front}`;
+            url_back = `pokemon/${image_back}`;
+            break;
+        default:
+            console.log('No has seleccionado ninguna película válida.');            
+            break;
+    }
+    body.image_front = url_front;
+    body.image_back = url_back;
+
+    const result = await productService.editProduct(body, id);
+
+    if (!result.isError) {
+        res.render('message', {
+            view: {
+                title: 'Message | Funkoshop'
+            },
+            title: 'Funko Modificado',
+            description: result.message
+        });
+    } else {
+        errorGetting(res);
+    }
 };
 const deleteProduct = async (req, res) => {
     const id = req.params.id;

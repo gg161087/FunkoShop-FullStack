@@ -5,5 +5,5 @@ const getLicences = async () => {
 }
 
 export default {
-    getLicences,
+    getLicences,    
 };
