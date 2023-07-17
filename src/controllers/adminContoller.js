@@ -1,7 +1,7 @@
 import productService from '../services/productService.js';
 import categoryService from '../services/categoryService.js';
 import licenceService from '../services/licenceService.js';
-import { errorGetting } from '../utils/errorHandlers.js'
+import { errorGetting } from '../utils/errorHandlers.js';
 
 const adminView = async (req, res) => {
     const categories = await categoryService.getCategories();
@@ -32,7 +32,8 @@ const createView = async (req, res) => {
 };
 const createProduct = async (req, res) => {
     const body = req.body;
-    const result = await productService.createProduct(body);
+    console.log(body);
+    /* const result = await productService.createProduct(body); */
     res.redirect('admin');
 };
 const bulkCreate = async (req, res) => {
