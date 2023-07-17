@@ -1,6 +1,9 @@
 .footer {
     background-color: var(--dark-bg-solid);
     padding: var(--spacing-68) var(--spacing-68) var(--spacing-8) var(--spacing-68);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
 }
 .footer__copy {
     margin-top: var(--spacing-36);

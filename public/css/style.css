@@ -19,7 +19,7 @@
 @import url('./components/slider.css');
 
 /* PAGES */
-@import url('./pages/404.css');
+@import url('./pages/message.css');
 @import url('./pages/home.css');
 @import url('./pages/shop.css');
 @import url('./pages/item.css');

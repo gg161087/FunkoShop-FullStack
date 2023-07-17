@@ -7,18 +7,18 @@
                 <label class="form__label" for="collection">Categoría:</label>
                 <select class="form__select" name="collection" id="collection" required>
                     <option value="" disabled selected hidden>Seleccionar</option>
-                    <option value="Figuras Coleccionables">Figuras Coleccionables</option>
-                    <option value="Llaveros">Llaveros</option>
-                    <option value="Remeras">Remeras</option>
+                    <% categories.forEach(category => { %>
+                        <option value="<%= category.category_id%>"><%= category.category_name%></option>                                                                     
+                    <% }); %>
                 </select>
             </div>
             <div class="form__box--flex">
                 <label class="form__label" for="collection">Licencia:</label>
                 <select class="form__select" name="collection" id="collection" required>
                     <option value="" disabled selected hidden>Seleccionar</option>
-                    <option value="starwars">Star Wars</option>
-                    <option value="pokemon">Pokemon</option>
-                    <option value="harrypotter">Harry Potter</option>
+                    <% licences.forEach(licences => { %>
+                        <option value="<%= licences.licence_id%>"><%= licences.licence_name%></option>                                                                     
+                    <% }); %>                    
                 </select>
             </div>
         </div>

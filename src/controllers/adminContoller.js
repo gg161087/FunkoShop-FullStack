@@ -4,12 +4,14 @@ import licenceService from '../services/licenceService.js';
 import { errorGetting } from '../utils/errorHandlers.js'
 
 const adminView = async (req, res) => {
+    const categories = await categoryService.getCategories();
     const products = await productService.getProducts();
     if (!products.isError) {
         res.render('admin/admin', {
             view: {
                 title: 'List of Products | Admin Funkoshop'
             },
+            categories: categories.data,
             products: products.data
         });
     } else {
@@ -17,10 +19,15 @@ const adminView = async (req, res) => {
     }
 };
 const createView = async (req, res) => {
+    const categories = await categoryService.getCategories();
+    const licences = await licenceService.getLicences();
+
     res.render('admin/create', {
         view: {
             title: 'Create Product | Admin Funkoshop'
-        }
+        },
+        categories: categories.data,
+        licences: licences.data
     });
 };
 const createProduct = async (req, res) => {
@@ -80,10 +87,13 @@ const editProduct = async (req, res) => {
     const result = await productService.editProduct(body, id);
 
     if (!result.isError) {
+        const categories = await categoryService.getCategories();
+
         res.render('message', {
             view: {
                 title: 'Message | Funkoshop'
             },
+            categories: categories.data,
             title: 'Funko Modificado',
             description: result.message
         });
@@ -97,11 +107,15 @@ const deleteProduct = async (req, res) => {
     await productService.deleteProduct(id);
     res.redirect('/admin');
 };
-const loginView = (req, res) => res.render('auth/login', {
-    view: {
-        title: 'Login | Funkoshop'
-    }
-});
+const loginView = async (req, res) => {
+    const categories = await categoryService.getCategories();
+    res.render('auth/login', {  
+        view: {
+            title: 'Login | Funkoshop'
+        },
+        categories:categories.data
+    });
+};
 const loginUser = (req, res) => res.send('Login Route that receive the data when user click login button');
 const registerView = (req, res) => res.render('auth/register', {
     view: {

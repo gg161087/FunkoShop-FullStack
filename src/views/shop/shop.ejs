@@ -44,8 +44,8 @@
       </div>
   </aside>
   <section class="shop__content">
-      <ul class="shop__items">
-          <% products.forEach( item => { %>
+        <ul class="shop__items">
+        <% products.forEach( item => { %>
             <li class="shop__item">
                 <article class="card-item">
                     <a class="card-item__link" href="/shop/item/<%= item.product_id%>">
@@ -63,8 +63,8 @@
                     </a>
                 </article>
             </li>
-          <% }); %>
-      </ul>
+        <% }); %>
+        </ul>
       <div class="pagination">
           <a class="pagination__link" href="#" ><</a>
           <a class="pagination__link pagination__link--selected" href="#" >1</a>

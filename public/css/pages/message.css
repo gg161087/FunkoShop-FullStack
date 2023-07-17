@@ -1,5 +1,5 @@
-.error {
-    height: 50vh;
+.message {
+    min-height: 55vh;
     display: flex;
     flex-direction: column;
     justify-content: center;    

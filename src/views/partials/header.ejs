@@ -18,15 +18,11 @@
             <li class="navbar__item with-submenu">
                 <a class="navbar__link with-icon" href="/shop">SHOP<iconify-icon icon="ion:chevron-down"></iconify-icon></a>
                 <ul class="submenu">
+                <% categories.forEach(category => { %>
                     <li class="submenu__item">
-                        <a class="submenu__link" href="">Funkos</a>
-                    </li>
-                    <li class="submenu__item">
-                        <a class="submenu__link" href="">Remeras</a>
-                    </li>
-                    <li class="submenu__item">
-                        <a class="submenu__link" href="">LLaveros</a>
-                    </li>
+                        <a class="submenu__link" href="/shop"><%= category.category_name%></a>
+                    </li>                                              
+                <% }); %>                  
                 </ul>
             </li>
             <li class="navbar__item">

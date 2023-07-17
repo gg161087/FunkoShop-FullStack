@@ -11,6 +11,11 @@ html {
     font-size: 62.5%;
     color: var(--dark-solid);
 }
+body {
+    position: relative;
+    padding-bottom: var(--spacing-128);
+    min-height: 100vh;
+}
 a {
     text-decoration: none;
     font-family: inherit;
