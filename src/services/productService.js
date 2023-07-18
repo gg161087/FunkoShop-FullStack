@@ -12,24 +12,26 @@ const getProduct = async (id) => {
     return await productModel.getProduct({ product_id: id });
 }
 
-const createProduct = async (item) => {
+const createProduct = async (body, files) => {
+    const partes = files[0].destination.split('\\');
+    const dirLincence = partes[partes.length - 1];           
     const itemSchema = {
-        product_name: item.name,
-        product_description: item.description,
-        price: item.price,
-        stock: item.stock,
-        discount: item.discount,
-        sku: item.sku,
-        dues: item.dues,
-        image_front: '/imagen_front',
-        image_back: '/imagen_back',
-        licence_id: item.collection,
-        category_id: item.category
+        product_name: body.name,
+        product_description: body.description,
+        price: body.price,
+        stock: body.stock,
+        discount: body.discount,
+        sku: body.sku,
+        dues: body.dues,
+        image_front: `/${dirLincence}/${files[0].filename}`,
+        image_back: `${dirLincence}/${files[1].filename}`,
+        licence_id: body.licence,
+        category_id: body.category
     }
     return await productModel.createProduct([Object.values(itemSchema)]);
 }
 
-const editProduct = async (body, id) => {    
+const editProduct = async (body, id) => {   
     const productScheme = {
         product_name: body.name,
         product_description: body.description,
@@ -40,7 +42,7 @@ const editProduct = async (body, id) => {
         dues: body.dues,
         image_front: body.image_front,
         image_back: body.image_back,
-        licence_id: body.collection,
+        licence_id: body.licence,
         category_id: body.category
     }
     return await productModel.editProduct(productScheme, { product_id: id });

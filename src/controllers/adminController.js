@@ -32,9 +32,13 @@ const createView = async (req, res) => {
 };
 const createProduct = async (req, res) => {
     const body = req.body;
-    console.log(body);
-    /* const result = await productService.createProduct(body); */
-    res.redirect('admin');
+    const files = req.files;    
+    const result = await productService.createProduct(body, files);
+    if(!result.isError) {
+        res.redirect('/admin');
+    } else {
+        errorGetting(res);
+    }  
 };
 const bulkCreate = async (req, res) => {
     const body = req.body;
@@ -58,6 +62,7 @@ const editView = async (req, res) => {
 const editProduct = async (req, res) => {
     const id = req.params.id;
     const body = req.body;
+    const files = req.files; 
     const licences = await licenceService.getLicences();
     const lincence_name = licences.data[req.body.collection - 1].licence_name;
     let url_front = '';

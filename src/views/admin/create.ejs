@@ -4,20 +4,20 @@
     <form class="create__form" action="/admin/create" method="POST" enctype="multipart/form-data">
         <div class="form__flex">
             <div class="form__box--flex">
-                <label class="form__label" for="collection">Categoría:</label>
-                <select class="form__select" name="collection" id="collection" required>
+                <label class="form__label" for="category">Categoría:</label>
+                <select class="form__select" name="category" id="category" required>
                     <option value="" disabled selected hidden>Seleccionar</option>
                     <% categories.forEach(category => { %>
-                        <option value="<%= category.category_id%>"><%= category.category_name%></option>                                                                     
+                        <option value="<%= category.category_id %>"><%= category.category_name %></option>                                                                     
                     <% }); %>
                 </select>
             </div>
             <div class="form__box--flex">
-                <label class="form__label" for="collection">Licencia:</label>
-                <select class="form__select" name="collection" id="collection" required>
+                <label class="form__label" for="licence">Licencia:</label>
+                <select class="form__select" name="licence" id="licence" required>
                     <option value="" disabled selected hidden>Seleccionar</option>
                     <% licences.forEach(licences => { %>
-                        <option value="<%= licences.licence_id%>"><%= licences.licence_name%></option>                                                                     
+                        <option value="<%= licences.licence_id %>"><%= licences.licence_name %></option>                                                                     
                     <% }); %>                    
                 </select>
             </div>
