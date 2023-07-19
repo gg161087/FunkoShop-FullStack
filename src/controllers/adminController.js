@@ -1,7 +1,7 @@
 import productService from '../services/productService.js';
 import categoryService from '../services/categoryService.js';
 import licenceService from '../services/licenceService.js';
-import { errorGetting } from '../utils/errorHandlers.js';
+import { message } from '../utils/errorHandlers.js';
 
 const adminView = async (req, res) => {
     const categories = await categoryService.getCategories();
@@ -15,7 +15,7 @@ const adminView = async (req, res) => {
             products: products.data
         });
     } else {
-        errorGetting(res);
+        message(res, 503, 'Error 503 | Funkoshop', 'ERROR 503', 'Hubo un error inesperado, intente más tarde.', '/', 'HOME');
     }
 };
 const createView = async (req, res) => {
@@ -37,7 +37,7 @@ const createProduct = async (req, res) => {
     if(!result.isError) {
         res.redirect('/admin');
     } else {
-        errorGetting(res);
+        message(res, 503, 'Error 503 | Funkoshop', 'ERROR 503', 'Hubo un error inesperado, intente más tarde.', '/', 'HOME');
     }  
 };
 const bulkCreate = async (req, res) => {
@@ -104,7 +104,7 @@ const editProduct = async (req, res) => {
             description: result.message
         });
     } else {
-        errorGetting(res);
+        message(res, 503, 'Error 503 | Funkoshop', 'ERROR 503', 'Hubo un error inesperado, intente más tarde.', '/', 'HOME');
     }
 };
 const deleteProduct = async (req, res) => {

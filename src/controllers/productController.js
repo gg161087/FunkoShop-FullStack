@@ -1,6 +1,6 @@
 import categoryService from '../services/categoryService.js';
 import productService from '../services/productService.js';
-import { errorGetting, errorNotExist } from '../utils/errorHandlers.js';
+import { message } from '../utils/errorHandlers.js';
 
 const shopView = async (req, res) => {
     const categories = await categoryService.getCategories();
@@ -15,17 +15,18 @@ const shopView = async (req, res) => {
             products: products.data
         });
     } else {
-        errorGetting(res);
+        message(res, 503, 'Error 503 | Funkoshop', 'ERROR 503', 'Hubo un error inesperado, intente más tarde.', '/', 'HOME');
     }   
-}
+};
+
 const detailView = async (req, res) => {
     const id = req.params.id;
     const categories = await categoryService.getCategories();
     const product = await productService.getProduct(id);    
-    const licence_id = product.data[0].licence_id;
-    const products = await productService.getProductsByLicence(licence_id);
-
-    if (!product.isError) {
+    
+    if (!product.isError && product.data[0] ) {        
+        const licence_id = product.data[0].licence_id;
+        const products = await productService.getProductsByLicence(licence_id);
         res.render('./shop/detail', {
             view: {
                 title: "Item | Funkoshop"
@@ -36,9 +37,10 @@ const detailView = async (req, res) => {
             sliderTitle: 'Productos Relacionados'
         });                
     } else {
-        errorNotExist(res);
+        message(res, 400, 'Error 400 | Funkoshop', 'ERROR 400', 'El producto con el ID seleccionado no existe o fue eliminado.', '/shop', 'VOLVER');
     } 
-}
+};
+
 const addProductToCart = (req, res) => res.send('Route to add a item to cart');
 const cartView = (req, res) => res.send('Cart View Route');
 const checkout = (req, res) => res.send('Route to receive the selected products and init the buy process');

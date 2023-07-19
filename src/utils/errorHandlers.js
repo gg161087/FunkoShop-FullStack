@@ -8,28 +8,26 @@ export const notFoundPage = async (req, res) => {
         },
         categories: categories.data,
         title: 'Error 404',
-        description: 'Página no encontrada.' 
+        description: 'Página no encontrada.',
+        href: {
+            route: '/',
+            text: 'HOME'
+        } 
     });
 }
-export const errorGetting = async (res) => {
+
+export const message = async (res, nError, viewTitle, title, description, route, text) => {
     const categories = await categoryService.getCategories();
-    res.status(503).render('message', {
+    res.status(nError).render('message', {
         view: {
-            title: '503 | Funkoshop'
+            title: viewTitle
         },
         categories: categories.data,
-        title: 'Error 503',
-        description: 'Hubo un error inesperado, intente más tarde.' 
-    });
-}
-export const errorNotExist = async (res) => {
-    const categories = await categoryService.getCategories();
-    res.status(400).render('message', {
-        view: {
-            title: '400 | Funkoshop'
-        },
-        categories: categories.data,
-        title: 'Error 400',
-        description: 'El producto con el ID seleccionado no existe o fue eliminado.' 
+        title,
+        description,
+        href: {
+            route,
+            text
+        } 
     });
 }
