@@ -3,8 +3,10 @@ import productService from '../services/productService.js';
 import { message } from '../utils/errorHandlers.js';
 
 const shopView = async (req, res) => {
+    const filter = req.query.filter;
+    let products;
+    filter ? products = await productService.getProductsByLicence(filter) : products = await productService.getProducts()
     const categories = await categoryService.getCategories();
-    const products = await productService.getProducts();
 
     if(!products.isError) {
         res.render('./shop/shop', {

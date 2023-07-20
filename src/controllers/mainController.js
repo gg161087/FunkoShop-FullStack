@@ -28,6 +28,10 @@ const contactView = async (req, res) => {
         view: {
             title: 'Contact | Funkoshop'
         },
+        href: {
+            route: '/',
+            text: 'HOME'
+        },
         categories: categories.data,
         title: 'Email contact',
         description: 'gg161087@gmail.com' 
@@ -40,12 +44,31 @@ const aboutView = async (req, res) => {
         view: {
             title: 'About | Funkoshop'
         },
+        href: {
+            route: '/',
+            text: 'HOME'
+        },
         categories: categories.data,
         title: 'About',
         description: 'About View Route' 
     });
 };
-const faqsView = (req, res) => res.send('FAQs View Route');
+const faqsView = async (req, res) => {
+    const categories = await categoryService.getCategories();
+
+    res.render('message', {
+        view: {
+            title: 'About | Funkoshop'
+        },
+        href: {
+            route: '/',
+            text: 'HOME'
+        },
+        categories: categories.data,
+        title: 'About',
+        description: 'FAQs View Route' 
+    });    
+};
 
 export default {
     homeView,    
