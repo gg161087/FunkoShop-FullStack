@@ -5,6 +5,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: var(--spacing-36);
+    margin-bottom: var(--spacing-196);
 }
 
 .create__title {
